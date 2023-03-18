@@ -77,7 +77,7 @@ class Post(db.Model):
 
     @validates("category")
     def validate_category(self, key, category):
-        if category != "Fiction" or category != "Non-Fiction":
+        if category != "Fiction" and category != "Non-Fiction":
             raise ValueError("Summary must be Fiction or Non-Fiction.")
         return category
 

@@ -12,6 +12,9 @@ class Author(db.Model):
     @validates('name')
     def validate_name(self, key, name):
         # names = Author.query(Author.name).all() # => TypeError: 'Query' object is not callable
+        
+        # names = Author.query.with_entities(Author.name).all()
+        # names = [author.name for author in Author.query.all()]
         names = db.session.query(Author.name).all()
         if not name:
             raise ValueError('Must have a name.')
